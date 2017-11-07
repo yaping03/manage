@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from myapp.models import Book,Author,Publish,AuthorDetail,Authlog
+from rbac import models
+from rbac.rbac.mypermission import session_handle
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def login_req(func):
@@ -105,12 +107,11 @@ def the_edit_publish(req,id):
 def login(request):
     state = ""
     if request.method=="POST":
-        username = request.POST['user']
-        password = request.POST['pwd']
-        auth = Authlog.objects.filter(user=username,pwd=password)
-        if auth:
-            request.session["login"]=True
-            request.session["user"]=username
+        username = request.POST.get('user')
+        password = request.POST.get('pwd')
+        obj = models.User.objects.filter(username=username,pwd=password)
+        if obj:
+            session_handle(request,obj)
             return redirect("/home")
         else:
             state = "用户名或密码错误"
@@ -121,10 +122,10 @@ def regist(request):
     if request.method == 'POST':
         password = request.POST.get('pwd', '')
         username = request.POST.get('user', '')
-        if Authlog.objects.filter(user=username):
+        if models.User.objects.filter(username=username):
             state = '用户已存在'
         else:
-            new_user =Authlog.objects.create(user=username, pwd=password)
+            new_user =models.User.objects.create(username=username, pwd=password,email="aaa")
             return redirect('/')
     content = {
         'state': state,

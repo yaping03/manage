@@ -25,7 +25,7 @@ SECRET_KEY = 'k#!12)jmgdb!xizs0x)ux^9t#l-2aa4zkxgx!z68)g_ti-_dp4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['101.132.144.22','0.0.0.0']
+ALLOWED_HOSTS = ['101.132.144.22','0.0.0.0',"127.0.0.1"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp.apps.MyappConfig',
+    "rbac"
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "rbac.middlewares.filters.MyFilter"
 ]
 
 ROOT_URLCONF = 'ORMtest.urls'
@@ -75,22 +77,22 @@ WSGI_APPLICATION = 'ORMtest.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'webtest',
-        'USER':'root',
-        'PASSWORD':'zyp1230000',
-        'HOST':'',
-        'PORT':'',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'webtest',
+#         'USER':'root',
+#         'PASSWORD':'zyp1230000',
+#         'HOST':'',
+#         'PORT':'',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -132,7 +134,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS =(
             os.path.join(BASE_DIR,"static"),
         )
-
+ALLOW_URL = [
+    "/login/",
+    "/regist",
+    "/admin/.*",
+]
 
 LOGGING = {
     'version': 1,
