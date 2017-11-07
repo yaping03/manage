@@ -25,7 +25,7 @@ SECRET_KEY = 'k#!12)jmgdb!xizs0x)ux^9t#l-2aa4zkxgx!z68)g_ti-_dp4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['101.132.144.22','0.0.0.0']
+ALLOWED_HOSTS = ['101.132.144.22','0.0.0.0','127.0.0.1']
 
 
 # Application definition
