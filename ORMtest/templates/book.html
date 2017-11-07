@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    {#    <link rel="stylesheet" href="/static/bootstrap/fonts">#}
+    <script src="/static/jquery.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/book">图书管理系统</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 150px">
+                    {% block function %}
+                        <li><a href="/author">作者信息</a></li>
+                        <li><a href="/publish">出版社信息</a></li>
+                    {% endblock %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<div class="container-fluid">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 clearfix">
+        <div class="row">
+            <div style="margin-top: 100px"></div>
+            <div class="form-group col-lg-2 form-inline">
+                <input type="text" class="form-control" id="keyword">
+            </div>
+            <div class="col-lg-1">
+                <input type="submit" class="form-control btn btn-primary" value="搜索" id="sousuo">
+            </div>
+            <div class="col-lg-1 pull-right">
+                <button type="button" class="form-control btn btn-success" id="add" data-toggle="modal"
+                        data-target="#myModal" formmethod="post">添加
+                </button>
+            </div>
+
+        </div>
+        <table class="table table-bordered table-striped table-hover text-center">
+            <tbody id="t1">
+            {% block table %}
+                <tr class="active text-center">
+                    <th class="text-center col-md-1">编号</th>
+                    <th class="text-center col-md-2">书名</th>
+                    <th class="text-center col-md-2">作者</th>
+                    <th class="text-center col-md-2">出版日期</th>
+                    <th class="text-center col-md-2">出版社</th>
+                    <th class="text-center col-md-1">价格</th>
+                    <th class="text-center col-md-2">操作</th>
+                </tr>
+                {% for i in obj %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.title }}</td>
+                        <td>{% for author in i.authors.all %}
+                            {{ author.name }}&nbsp;
+                        {% endfor %}
+                        </td>
+                        <td>{{ i.publishDate|date:"Y-m-d" }}</td>
+                        <td>{{ i.publish.name }}</td>
+                        <td>{{ i.price }}</td>
+                        <td>
+                            <a href="/edit/book/{{ i.nid }}">
+                                <button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span>编辑
+                                </button>
+                            </a>
+                            <a href="/del/book/{{ i.nid }}">
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span>删除
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endblock table %}
+            </tbody>
+        </table>
+    <nav aria-label="Page navigation">
+  <ul class="pagination">
+  {% if obj.has_previous %}
+      <li><a href="/book?page={{ obj.previous_page_number }}">上一页</a></li>
+    {% else %}
+      <li class="disabled"><a href="">上一页</a></li>
+  {% endif %}
+{#        {% if paginator.num_pages > 10 %}#}
+{#            {% if num < 9 %}#}
+{#             {% for count in page_range %}#}
+{#              {% if count < 10 %}#}
+{#              {% if count == num %}#}
+{#                  <li class="active"><a href="/book?page={{ count }}">{{ count }}</a></li>#}
+{#              {% else %}#}
+{#                  <li><a href="/book?page={{ count }}">{{ count }}</a></li>#}
+{#              {% endif %}#}
+{#              {% else %}#}
+{#                  {% endif %}#}
+{#                 {% endfor %}#}
+{#                {% else %}#}
+{#                <li><a href="/book?page={{ obj.previous_page_number }}">{{ num|add:-1 }}</a></li>#}
+{#                <li class="active"><a href="/book?page={{ num }}">{{ num }}</a></li>#}
+{#                 <li><a href="/book?page={{ obj.next_page_number }}">{{ num|add:1 }}</a></li>#}
+{#                 {% endif %}#}
+
+
+
+
+{#            {% else %}#}
+        {% for count in page_range %}
+      {% if count == num %}
+          <li class="active"><a href="/book?page={{ count }}">{{ count }}</a></li>
+      {% else %}
+          <li><a href="/book?page={{ count }}">{{ count }}</a></li>
+          {% endif %}
+      {% endfor %}
+{#        {% endif %}#}
+
+
+
+
+    {% if obj.has_next %}
+      <li><a href="/book?page={{ obj.next_page_number }}">下一页</a></li>
+    {% else %}
+      <li class="disabled"><a href="">下一页</a></li>
+  {% endif %}
+  </ul>
+</nav>
+    </div>
+
+</div>
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">请输入信息</h4>
+            </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {% block form %}
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">书名</label>
+                            <input type="text" class="form-control info" id="name" placeholder="书名" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="date" class="col-sm-2 control-label">出版日期</label>
+                            <input type="date" class="form-control info" id="date" placeholder="出版日期"
+                                   name="publishDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="classes" class="col-sm-2 control-label">价格</label>
+                            <input type="text" class="form-control info" id="classes" placeholder="价格" name="price">
+                        </div>
+                        <div class="form-group">
+                        <label for="author" class="col-sm-2 control-label">作者</label>
+                        <select multiple="multiple" class="form-control" name="author" id="author">
+                            {% for obj in author_obj %}
+                                <option value="{{ obj.name }}">{{ obj.name }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                        <label for="publish" class="col-sm-2 control-label">出版社</label>
+                        <select class="form-control" name="publish" id="publish">
+                            {% for obj in pub_obj %}
+                                <option value="{{ obj.name }}">{{ obj.name }}</option>
+                            {% endfor %}
+                        </select>
+
+                        </div>
+                {% endblock form %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" id="save">加入</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+    $("#save").on("click", function () {
+        $("#myModal").modal("hide")
+    });
+    $("#sousuo").on("click", function () {
+        var keyword = $("#keyword").val();
+        $("tr").removeClass("text-primary");
+        $("td").each(function () {
+            if ($(this).text() == keyword) {
+                $(this).parent().addClass("text-primary")
+            }
+        });
+    })
+</script>
+</body>
+</html>

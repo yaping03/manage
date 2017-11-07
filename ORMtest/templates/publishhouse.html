@@ -1,0 +1,45 @@
+{% extends "book.html" %}
+{% block function %}
+   <li><a href="/book">图书信息</a></li>
+   <li><a href="/author">作者信息</a></li>
+{% endblock function %}
+{% block table %}
+    <tr>
+        <th class="text-center col-md-1">编号</th>
+        <th class="text-center col-md-2">社名</th>
+        <th class="text-center col-md-2">城市</th>
+        <th class="text-center col-md-3">email</th>
+        <th class="text-center col-md-3">操作</th>
+    </tr>
+    {% for i in obj %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.city }}</td>
+            <td>{{ i.email }}</td>
+            <td>
+                <a href="/edit/publish/{{ i.nid }}">
+                    <button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span>编辑</button>
+                </a>
+                <a href="/del/publish/{{ i.nid }}">
+                    <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span>删除</button>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block form %}
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">社名</label>
+        <input type="text" class="form-control info" id="name" placeholder="社名" name="name">
+    </div>
+    <div class="form-group">
+        <label for="city" class="col-sm-2 control-label">城市</label>
+        <input type="text" class="form-control info" id="city" placeholder="城市" name="city">
+    </div>
+    <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">email</label>
+        <input type="text" class="form-control info" id="email" placeholder="email" name="email">
+    </div>
+{% endblock %}

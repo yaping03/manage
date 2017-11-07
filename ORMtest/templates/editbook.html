@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    {#    <link rel="stylesheet" href="/static/bootstrap/fonts">#}
+    <script src="/static/jquery.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="myModal" class="container">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">请输入信息</h4>
+            </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {% block form %}
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">书名</label>
+                            <input type="text" class="form-control info" id="name" placeholder="书名" name="title" value="{{ obj.title }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="date" class="col-sm-2 control-label">出版日期</label>
+                            <input type="date" class="form-control info" id="date" placeholder="出版日期"
+                                   name="publishDate" value="{{ obj.publishDate|date:"Y-m-d" }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="classes" class="col-sm-2 control-label">价格</label>
+                            <input type="text" class="form-control info" id="classes" placeholder="价格" name="price" value="{{ obj.price }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="author" class="col-sm-2 control-label">作者</label>
+                            <select multiple="multiple" class="form-control" name="author" id="author">
+                                {% for the_obj in author_obj %}
+                                    {% if the_obj in obj.authors.all %}
+                                        <option value="{{ the_obj.name }}" selected>{{ the_obj.name }}</option>
+                                        {% else %}
+                                        <option value="{{ the_obj.name }}">{{ the_obj.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="publish" class="col-sm-2 control-label">出版社</label>
+                            <select class="form-control" name="publish" id="publish">
+                                {% for the_obj in pub_obj %}
+                                    {% if the_obj == obj.publish %}
+                                        <option value="{{ the_obj.name }}" selected>{{ the_obj.name }}</option>
+                                        {% else %}
+                                        <option value="{{ the_obj.name }}">{{ the_obj.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+
+                        </div>
+                    {% endblock form %}
+                </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+            <button type="submit" class="btn btn-primary" id="save">提交</button>
+
+        </div>
+        </form>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+</html>

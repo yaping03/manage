@@ -1,0 +1,53 @@
+{% extends "book.html" %}
+{% block function %}
+   <li><a href="/book">图书信息</a></li>
+   <li><a href="/publish">出版社信息</a></li>
+{% endblock function %}
+{% block table %}
+<tr>
+                <th class="text-center col-md-1">编号</th>
+                <th class="text-center col-md-2">姓名</th>
+                <th class="text-center col-md-1">年龄</th>
+                <th class="text-center col-md-2">生日</th>
+                <th class="text-center col-md-2">电话</th>
+                <th class="text-center col-md-2">地址</th>
+                <th class="text-center col-md-2">操作</th>
+            </tr>
+            {% for i in obj %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.age }}</td>
+                    <td>{{ i.authorDetail.birthday|date:"Y-m-d" }}</td>
+                    <td>{{ i.authorDetail.telephone }}</td>
+                    <td>{{ i.authorDetail.addr }}</td>
+                    <td>
+                        <a href="/edit/author/{{ i.nid }}"><button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span>编辑</button></a>
+                        <a href="/del/author/{{ i.nid }}"><button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span>删除</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+{% endblock table %}
+
+{% block form %}
+<div class="form-group">
+        <label for="name" class="col-sm-2 control-label">姓名</label>
+        <input type="text" class="form-control info" id="name" placeholder="name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="city" class="col-sm-2 control-label">年龄</label>
+        <input type="text" class="form-control info" id="age" placeholder="age" name="age">
+    </div>
+    <div class="form-group">
+        <label for="birthday" class="col-sm-2 control-label">生日</label>
+        <input type="date" class="form-control info" id="birthday" placeholder="birthday" name="birthday">
+    </div>
+        <div class="form-group">
+        <label for="telephone" class="col-sm-2 control-label">电话</label>
+        <input type="text" class="form-control info" id="telephone" placeholder="telephone" name="telephone">
+    </div>
+        <div class="form-group">
+        <label for="addr" class="col-sm-2 control-label">地址</label>
+        <input type="text" class="form-control info" id="addr" placeholder="addr" name="addr">
+    </div>
+{% endblock form %}

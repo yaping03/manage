@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<form class="form-horizontal" action="" style="margin-top: 200px;margin-left: 400px" method="post">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="username" class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="user" id="username" placeholder="user" aria-describedby="helpBlock2" required="true">
+        <span id="helpBlock2" class="help-block"></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-4">
+      <input type="password" class="form-control" name="pwd" id="password" placeholder="Passwords" required="true">
+        <span id="Passwords" class="help-block">
+            {{ state }}
+        </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="remember"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success col-md-2">登陆</button>
+        <button type="submit" class="btn btn-default col-md-2 col-lg-offset-1">注册</button>
+    </div>
+  </div>
+</form>
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/mycheck.js"></script>
+<script>
+  $(".form-horizontal").check({"user":{"user_length":6}})
+    $(".btn-default").on("click",function () {
+        window.open("http://127.0.0.1:8000/regist")
+    })
+</script>
+<!--<script>-->
+    <!--$(":submit").on("click",function (e) {-->
+        <!--$(".form-control").each(function () {-->
+            <!--var my=$(this);-->
+            <!--if(my.val().trim().length===0){-->
+                <!--my.parent().parent().addClass("has-error");-->
+                <!--my.next().text(my.attr("id")+" must be not blank");-->
+                <!--e.preventDefault();-->
+                <!--return false-->
+            <!--}-->
+        <!--})-->
+    <!--})-->
+<!--</script>-->
+</body>
+</html>

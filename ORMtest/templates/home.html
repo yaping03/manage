@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <style>
+        .jumbotron {
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .pos {
+            color: #dddddd;
+            position: absolute;
+            bottom: 10px;
+            left: 700px;
+        }
+        .pos1{
+            color: #dddddd;
+            position: absolute;
+            bottom: 40px;
+            left: 650px;
+        }
+
+        .c1 {
+            height: 60px;
+            width: 40px;
+            background-color: rgba(128, 128, 128, 0.41);
+            font-size: 40px;
+            font-weight: 900;
+            line-height: 60px;
+            text-align: center;
+        }
+
+        .navbar {
+            margin-bottom: 0;
+        }
+
+        .c1:hover {
+            background-color: rgba(128, 128, 128, 0.77);
+        }
+
+        .c1 a {
+            text-decoration: none;
+        }
+
+        .s1 {
+            position: absolute;
+            top: 260px;
+            left: 0;
+        }
+
+        .s2 {
+            position: absolute;
+            top: 260px;
+            right: 0;
+        }
+
+        .syl {
+            margin-left: 10px;
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            background-color: #dddddd;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .hove {
+            background-color: #c9033b;
+        }
+    </style>
+</head>
+<body>
+<div class="heading">
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#"><b>oldboy edu</b><span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Linux学院</a></li>
+                    <li><a href="#">Linux学院</a></li>
+                    <li><a href="#">{{ user }},欢迎您</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://127.0.0.1:8000/blog">我的博客</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">后台管理<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Phone</a></li>
+                            <li><a href="#">Address</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="http://127.0.0.1:8000/book">页面管理</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+<div class="jumbotron">
+    <div class="imgs">
+    <div class="show" style="display:block">
+        <img src="/static/imgs/jumu.jpg" alt="" height="600px" width="100%">
+        <div class="pos1">
+            <h2>bootstrip一点都不难</h2>
+        </div>
+    </div>
+    <div class="hidden">
+        <img src="/static/imgs/jumu1.jpg" alt="" height="600px" width="100%">
+        <div class="pos1">
+            <h2>bootstrip一点都不快</h2>
+        </div>
+    </div>
+    <div class="hidden">
+        <img src="/static/imgs/jumu2.jpg" alt="" height="600px" width="100%">
+        <div class="pos1">
+            <h2>bootstrip一用就崩溃</h2>
+        </div>
+    </div>
+    <div class="hidden">
+        <img src="/static/imgs/jumu3.jpg" alt="" height="600px" width="100%">
+        <div class="pos1">
+            <h2>bootstrip一调就变丑</h2>
+        </div>
+    </div>
+    </div>
+    <div class="c1 s1"><a href="#"><</a></div>
+    <div class="c1 s2"><a href="#">&nbsp;></a></div>
+    <div class="pos">
+        <span class="syl hove"></span>
+        <span class="syl"></span>
+        <span class="syl"></span>
+        <span class="syl"></span>
+    </div>
+
+</div>
+<!--<script>-->
+    <!--var ele = document.getElementsByClassName("s1")[0];-->
+    <!--ele.onclick = function () {-->
+        <!--var img = document.getElementsByClassName("show")[0];-->
+        <!--var cycle=document.getElementsByClassName("hove")[0];-->
+        <!--if (img.previousElementSibling!=undefined) {-->
+            <!--img.classList.remove("show");-->
+            <!--img.classList.add("hidden");-->
+            <!--img.previousElementSibling.classList.remove("hidden");-->
+            <!--img.previousElementSibling.classList.add("show");-->
+            <!--cycle.classList.remove("hove");-->
+            <!--cycle.previousElementSibling.classList.add("hove");-->
+        <!--}-->
+    <!--}-->
+<!--</script>-->
+<!--<script>-->
+    <!--var ele = document.getElementsByClassName("s2")[0];-->
+    <!--ele.onclick = function () {-->
+        <!--var img = document.getElementsByClassName("show")[0];-->
+        <!--var cycle=document.getElementsByClassName("hove")[0];-->
+        <!--if (img.nextElementSibling!=undefined) {-->
+            <!--img.classList.remove("show");-->
+            <!--img.classList.add("hidden");-->
+            <!--img.nextElementSibling.classList.remove("hidden");-->
+            <!--img.nextElementSibling.classList.add("show");-->
+            <!--cycle.classList.remove("hove");-->
+            <!--cycle.nextElementSibling.classList.add("hove");-->
+        <!--}-->
+    <!--}-->
+<!--//</script>-->
+
+<div class="well text-center" style="margin: 0">
+    <h1>Bootstrap能做什么？</h1>
+    <span>网站首页、网站后台、手机页面。。。</span>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="/static/imgs/login.png" alt="" height="400px" width="700px" style="">
+        </div>
+        <div class="col-md-6 text-center" style="margin-top: 60px">
+            <h1>使用bootstrap搭建的</h1>
+            <h1>登录页面</h1>
+            <span>使用表单、按钮组件搭建</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-center" style="margin-top: 60px">
+            <h1>使用bootstrap搭建的</h1>
+            <h1>信息采集单</h1>
+            <span>使用表单、页头、面板组件、进度条等组件搭建</span>
+        </div>
+        <div class="col-md-6">
+            <img src="/static/imgs/regit.png" alt="" height="300px" width="600px">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="/static/imgs/guanli.png" alt="" height="350px" width="700px">
+        </div>
+        <div class="col-md-6 text-center" style="margin-top: 60px">
+            <h1>使用bootstrap搭建的</h1>
+            <h1>管理后台</h1>
+            <span>使用导航条、表格、面板、分页等组件搭建</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-center" style="margin-top: 150px">
+            <h1>使用bootstrap搭建的</h1>
+            <h1>博客页面</h1>
+            <span>使用自定义导航、自定义分栏和分页等组件搭建</span>
+        </div>
+        <div class="col-md-6">
+            <img src="/static/imgs/blog.png" alt="" height="450px" width="700px">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 40px">
+        <div class="text-center">
+            <h3>心路历程</h3>
+            <p>唉，一下午就写了一个页面</p>
+            <p>时间都去哪了，时间都浪费在找照片了。。。</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="/static/imgs/1.jpg" alt="...">
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="/static/imgs/2.jpg" alt="...">
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="/static/imgs/3.jpg" alt="...">
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="/static/imgs/4.jpg" alt="...">
+            </a>
+        </div>
+        <div class="text-center">
+            emmmmmmmmm
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 50px">
+        <div class="col-md-6">
+            <p>所以说</p>
+            <p class="text-center">学好Bootstrap真的很重要，学好Bootstrap真的很重要，学好Bootstrap真的很重要</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <button class="btn btn-success">我知道了</button>
+        </div>
+    </div>
+
+</div>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        var i=0;
+        function move_right() {
+            if (i==3){
+                i=-1
+            }
+            i++;
+            $(".imgs").children().eq(i).fadeIn(800).siblings().fadeOut(800);
+            $(".syl").eq(i).addClass("hove");
+            $(".syl").eq(i).siblings().removeClass("hove");
+            $(".imgs").children().eq(i).removeClass("hidden");
+            $(".imgs").children().eq(i).siblings().addClass("hidden");
+
+        }
+        function move_left() {
+        if (i==0){
+                i=4
+            }
+        i--;
+        $(".imgs").children().eq(i).fadeIn(800).siblings().fadeOut(800);
+        $(".syl").eq(i).addClass("hove");
+        $(".syl").eq(i).siblings().removeClass("hove");
+        $(".imgs").children().eq(i).removeClass("hidden");
+        $(".imgs").children().eq(i).siblings().addClass("hidden");
+
+        }
+        var my_interval=setInterval(move_right,3000);
+        $(".jumbotron").hover(function () {
+            clearInterval(my_interval)
+        },function () {
+            my_interval=setInterval(move_right,3000);
+        });
+        $(".syl").mouseover(function () {
+            i=$(this).index();
+            $(".imgs").children().eq(i).fadeIn(800).siblings().fadeOut(800);
+            $(this).addClass("hove");
+            $(this).siblings().removeClass("hove");
+            $(".imgs").children().eq(i).removeClass("hidden");
+            $(".imgs").children().eq(i).siblings().addClass("hidden");
+        });
+        $(".s1").click(move_left);
+        $(".s2").click(move_right);
+    });
+</script>
+</body>
+</html>
